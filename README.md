@@ -40,8 +40,8 @@ If you want to improve results for handwritten input, deploy this Python microse
 
 Python Handwriting API (using Hugging Face)
 
-git clone https://github.com/your-handwriting-ocr-service
-cd handwriting-ocr-api
+git clone https://github.com/sharifulz/OCRTessaract
+cd OCRTessaract
 pip install -r requirements.txt
 python app.py
 
@@ -51,8 +51,8 @@ Build and Run the Project
 
 Clone the repo:
 
-git clone https://github.com/your-username/ocr-api-java.git
-cd ocr-api-java
+git clone https://github.com/sharifulz/OCRTessaract.git
+cd OCRTessaract
 
 Run locally:
 
@@ -127,7 +127,7 @@ Resources
 
 Author
 
-Shariful Islam – https://github.com/shariful-w3
+Shariful Islam – https://github.com/sharifulz/
 
 License
 
