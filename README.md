@@ -1,5 +1,5 @@
 
-***OCR Text Extraction API (Spring Boot + Tesseract + AI Handwriting Support)
+###OCR Text Extraction API (Spring Boot + Tesseract + AI Handwriting Support)
 
 This project is a RESTful API built with Spring Boot (Java 21) that allows you to:
 - Upload an image containing text (printed or handwritten)
