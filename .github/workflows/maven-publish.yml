@@ -47,9 +47,9 @@ jobs:
       - name: Install sshpass
         run: sudo apt-get update && sudo apt-get install -y sshpass
         
-      - name: Make deployment directory if not exist
-        run: |
-          sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no "${{ secrets.SERVER_USER }}"@"${{ secrets.SERVER_HOST }}" "mkdir -p $DEPLOY_DIR"
+      # - name: Make deployment directory if not exist
+      #   run: |
+      #     sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no "${{ secrets.SERVER_USER }}"@"${{ secrets.SERVER_HOST }}" "mkdir -p $DEPLOY_DIR"
 
       - name: Copy JAR to remote server
         run: |
