@@ -28,8 +28,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DEPLOY_DIR: /root/OpsCICD/github
-      DEPLOY_PORT: 8085
+      DEPLOY_DIR: /root/OCRTessaract
+      DEPLOY_PORT: 9095
 
     steps:
       - name: Checkout source code
@@ -39,7 +39,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17'  # Adjust based on your project
+          java-version: '21'  # Adjust based on your project
 
       - name: Build the JAR using Maven
         run: mvn clean package -DskipTests
@@ -53,4 +53,4 @@ jobs:
 
       - name: Run deployment script on remote server
         run: |
-          sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no "${{ secrets.SERVER_USER }}"@"${{ secrets.SERVER_HOST }}" "chmod +x $DEPLOY_DIR/run-github-app1.sh && $DEPLOY_DIR/run-github-app1.sh"
+          #sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no "${{ secrets.SERVER_USER }}"@"${{ secrets.SERVER_HOST }}" "chmod +x $DEPLOY_DIR/run-github-app1.sh && $DEPLOY_DIR/run-github-app1.sh"
