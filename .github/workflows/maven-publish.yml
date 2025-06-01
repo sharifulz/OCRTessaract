@@ -51,6 +51,21 @@ jobs:
         run: |
           sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no "${{ secrets.SERVER_USER }}"@"${{ secrets.SERVER_HOST }}" "mkdir -p $DEPLOY_DIR"
 
-      - name: Run deployment script on remote server
+      - name: Copy JAR to remote server
         run: |
-          #sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no "${{ secrets.SERVER_USER }}"@"${{ secrets.SERVER_HOST }}" "chmod +x $DEPLOY_DIR/run-github-app1.sh && $DEPLOY_DIR/run-github-app1.sh"
+          sshpass -p "${{ secrets.SERVER_PASSWORD }}" scp -o StrictHostKeyChecking=no target/*.jar "${{ secrets.SERVER_USER }}"@"${{ secrets.SERVER_HOST }}":"$DEPLOY_DIR/app.jar"
+      - name: Kill process on port $DEPLOY_DIR (if any)
+        run: |
+          sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no "${{ secrets.SERVER_USER }}"@"${{ secrets.SERVER_HOST }}" '
+            PID=$(lsof -ti:$DEPLOY_DIR)
+            if [ -n "$PID" ]; then
+              echo "Killing process on port $DEPLOY_DIR: $PID"
+              kill -9 $PID
+            else
+              echo "No process running on port $DEPLOY_DIR."
+            fi
+          '
+
+      - name: Run the JAR on remote server
+        run: |
+           #sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no "${{ secrets.SERVER_USER }}"@"${{ secrets.SERVER_HOST }}" "nohup java -jar $DEPLOY_DIR/app.jar > $DEPLOY_DIR/app.log 2>&1 &"
