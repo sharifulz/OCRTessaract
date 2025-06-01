@@ -131,7 +131,7 @@ Resources
 ```
 Author
 
-Shariful Islam – https://github.com/shariful-w3
+Shariful Islam – https://github.com/sharifulz
 
 License
 
