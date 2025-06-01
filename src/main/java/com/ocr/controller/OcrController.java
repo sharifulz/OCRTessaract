@@ -29,4 +29,9 @@ public class OcrController {
         String result = ocrService.extractText(convFile);
         return ResponseEntity.ok(result);
     }
+
+    @PostMapping("/test")
+    public ResponseEntity<String> test() {
+        return ResponseEntity.ok("Its Working, Service is running!");
+    }
 }
