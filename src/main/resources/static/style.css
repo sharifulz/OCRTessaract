@@ -1,0 +1,28 @@
+body {
+    background-color: #f8f9fa;
+    padding: 2rem;
+}
+
+.container {
+    max-width: 960px;
+}
+
+.preview-image {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    background-color: white;
+}
+
+#output-section {
+    display: none;
+}
+
+textarea {
+    width: 100%;
+    height: 400px;
+    resize: vertical;
+    font-family: monospace;
+}

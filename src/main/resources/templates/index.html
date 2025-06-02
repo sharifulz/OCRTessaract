@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCR Handwriting Extractor</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container py-5">
+    <h2 class="text-center mb-4">OCR Handwriting Extractor</h2>
+
+    <div id="upload-section" class="card mb-4">
+      <div class="card-body">
+        <form id="uploadForm">
+          <div class="form-group">
+            <label for="fileInput"><i class="fas fa-upload"></i> Upload Handwritten Image (JPG/PNG)</label>
+            <input type="file" class="form-control-file" id="fileInput" name="file" accept="image/*" required />
+          </div>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="result-section" class="d-none">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Uploaded Image:</h5>
+          <img id="uploadedImage" src="" alt="Uploaded Image" class="img-fluid border" />
+        </div>
+        <div class="col-md-6">
+          <h5>Extracted Text:</h5>
+          <pre id="extractedText" class="border p-3 bg-light"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
