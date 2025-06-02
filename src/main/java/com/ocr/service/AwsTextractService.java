@@ -24,22 +24,20 @@ public class AwsTextractService {
     @Autowired
     public AwsTextractService(AwsProperties awsProperties) {
         this.textractClient = TextractClient.builder()
-                .region(Region.of(awsProperties.getRegion()))
-                .credentialsProvider(StaticCredentialsProvider.create(
-                        AwsBasicCredentials.create(
-                                awsProperties.getAccessKey(),
-                                awsProperties.getSecretKey()
-                        )))
-                .build();
+						                .region(Region.of(awsProperties.getRegion()))
+						                .credentialsProvider(StaticCredentialsProvider.create(
+						                        AwsBasicCredentials.create(
+						                                awsProperties.getAccessKey(),
+						                                awsProperties.getSecretKey()
+						                        )))
+						                .build();
     }
 
     public String extractTextFromImage(File imageFile) throws IOException {
         byte[] fileContent = Files.readAllBytes(imageFile.toPath());
         Document document = Document.builder().bytes(SdkBytes.fromByteArray(fileContent)).build();
 
-        DetectDocumentTextRequest request = DetectDocumentTextRequest.builder()
-                .document(document)
-                .build();
+        DetectDocumentTextRequest request = DetectDocumentTextRequest.builder().document(document).build();
 
         DetectDocumentTextResponse result = textractClient.detectDocumentText(request);
 

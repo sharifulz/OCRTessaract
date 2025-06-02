@@ -52,8 +52,8 @@ public class GoogleCloudOcrController {
             GoogleCredentials credentials = GoogleCredentials.fromStream(credentialsStream)
                 .createScoped(List.of("https://www.googleapis.com/auth/cloud-platform"));
             ImageAnnotatorSettings settings = ImageAnnotatorSettings.newBuilder()
-                .setCredentialsProvider(FixedCredentialsProvider.create(credentials))
-                .build();
+														                .setCredentialsProvider(FixedCredentialsProvider.create(credentials))
+														                .build();
 
             File tempFile = File.createTempFile("upload-", "-" + file.getOriginalFilename());
             file.transferTo(tempFile);
