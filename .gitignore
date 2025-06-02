@@ -35,3 +35,4 @@ build/
 mvnw
 mvnw.cmd
 .gitattributes
+src/main/resources/handwriting-extract-ced9c3054691.json

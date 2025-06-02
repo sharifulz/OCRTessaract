@@ -15,7 +15,7 @@ import com.google.cloud.vision.v1.ImageAnnotatorClient;
 import com.google.protobuf.ByteString;
 
 @Service
-public class HandwritingOCRService {
+public class GoogleOcrService {
 
 	public String extractTextFromImage(String imagePath, ImageAnnotatorClient vision) throws IOException {
 	    // Read the image file into memory
@@ -24,16 +24,12 @@ public class HandwritingOCRService {
 	    // Build the image object
 	    Image img = Image.newBuilder().setContent(imgBytes).build();
 
-	    // Define the feature type (DOCUMENT_TEXT_DETECTION is suitable for handwriting and printed docs)
-	    Feature feat = Feature.newBuilder()
-	            .setType(Feature.Type.DOCUMENT_TEXT_DETECTION)
-	            .build();
+	    Feature feat = Feature.newBuilder().setType(Feature.Type.DOCUMENT_TEXT_DETECTION).build();
 
-	    // Build the annotation request
 	    AnnotateImageRequest request = AnnotateImageRequest.newBuilder()
-	            .addFeatures(feat)
-	            .setImage(img)
-	            .build();
+															            .addFeatures(feat)
+															            .setImage(img)
+															            .build();
 
 	    // Perform the annotation request
 	    BatchAnnotateImagesResponse response = vision.batchAnnotateImages(List.of(request));

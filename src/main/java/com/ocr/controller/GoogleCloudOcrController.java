@@ -17,20 +17,20 @@ import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.vision.v1.ImageAnnotatorClient;
 import com.google.cloud.vision.v1.ImageAnnotatorSettings;
-import com.ocr.service.HandwritingOCRService;
+import com.ocr.service.GoogleOcrService;
 import com.ocr.service.OcrService;
 
 import net.sourceforge.tess4j.TesseractException;
 
 @RestController
 @RequestMapping("/api/ocr")
-public class OcrController {
+public class GoogleCloudOcrController {
 	
     @Autowired
     private OcrService ocrService;
 
     @Autowired
-    private HandwritingOCRService googleCloudService;
+    private GoogleOcrService googleCloudService;
     
     @PostMapping("/extract")
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) throws IOException, TesseractException {
@@ -40,10 +40,10 @@ public class OcrController {
         return ResponseEntity.ok(result);
     }
     
+    //http://localhost:9095/api/ocr/extract/google
     @PostMapping("/extract/google")
     public ResponseEntity<String> extract(@RequestParam("file") MultipartFile file) {
         try {
-            // Load service account credentials from classpath
             InputStream credentialsStream = getClass().getClassLoader().getResourceAsStream("handwriting-extract-ced9c3054691.json");
             if (credentialsStream == null) {
                 return ResponseEntity.status(500).body("Google credentials file not found in resources.");
@@ -55,17 +55,14 @@ public class OcrController {
                 .setCredentialsProvider(FixedCredentialsProvider.create(credentials))
                 .build();
 
-            // Save the uploaded file temporarily
             File tempFile = File.createTempFile("upload-", "-" + file.getOriginalFilename());
             file.transferTo(tempFile);
 
-            // Call service to extract text
             String text;
             try (ImageAnnotatorClient vision = ImageAnnotatorClient.create(settings)) {
                 text = googleCloudService.extractTextFromImage(tempFile.getAbsolutePath(), vision);
             }
 
-            // Clean up temp file
             tempFile.delete();
 
             return ResponseEntity.ok(text);

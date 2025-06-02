@@ -10,3 +10,13 @@ spring:
     suffix: .html
     mode: HTML
     cache: false
+
+azure:
+  vision:
+    endpoint: <endpoint>
+    key: <api-key>
+aws:
+  accessKey: <accesskey>
+  secretKey: <secretkey>
+  region: us-east-1
+
