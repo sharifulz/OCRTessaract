@@ -118,6 +118,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.google.cloud</groupId>
+			<artifactId>google-cloud-monitoring</artifactId>
+			<version>3.29.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.auth</groupId>
+			<artifactId>google-auth-library-oauth2-http</artifactId>
+			<version>1.19.0</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
