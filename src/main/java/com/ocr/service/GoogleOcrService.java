@@ -12,6 +12,7 @@ import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
 import com.google.cloud.vision.v1.Feature;
 import com.google.cloud.vision.v1.Image;
 import com.google.cloud.vision.v1.ImageAnnotatorClient;
+import com.google.cloud.vision.v1.ImageContext;
 import com.google.protobuf.ByteString;
 
 @Service
@@ -26,8 +27,14 @@ public class GoogleOcrService {
 
 	    Feature feat = Feature.newBuilder().setType(Feature.Type.DOCUMENT_TEXT_DETECTION).build();
 
+	    ImageContext imageContext = ImageContext.newBuilder()
+	    	    .addLanguageHints("bn")   // Bangla (Bengali)
+	    	    .addLanguageHints("en")   // English
+	    	    .build();
+	    
 	    AnnotateImageRequest request = AnnotateImageRequest.newBuilder()
 															            .addFeatures(feat)
+															            .setImageContext(imageContext)
 															            .setImage(img)
 															            .build();
 
