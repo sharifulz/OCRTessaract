@@ -49,4 +49,6 @@ public class AzureVisionService {
             throw new RuntimeException("Failed to extract text: " + e.getMessage(), e);
         }
     }
+    
+    
 }
